@@ -1,0 +1,25 @@
+meta {
+  name: Create Session
+  type: http
+  seq: 8
+}
+
+post {
+  url: {{base_url}}/api/v1/sessions
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "data": {
+      "value": 1,
+      "items": ["a","b"]
+    }
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

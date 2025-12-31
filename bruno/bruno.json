@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Temp Tac Toe",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
