@@ -1,9 +1,9 @@
 import type { DiscordToken, DiscordUser } from "./response";
 
 const API_ENDPOINT = 'https://discord.com/api/v10';
-const CLIENT_ID = '726338362151141437';
-const CLIENT_SECRET = '3dIVJw4ehTNv9sYwDK6LnQnVfKjFwxLQ';
-const REDIRECT_URI = 'http://localhost:5173/api/v1/discord/callback';
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
+const REDIRECT_URI = `${process.env.HOST_URL}/api/v1/discord/callback`;
 
 async function getAuthorizationUrl() {
     return `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}&response_type=code&redirect_uri=${REDIRECT_URI}&scope=identify`;
