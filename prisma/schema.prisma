@@ -13,9 +13,29 @@ datasource db {
   provider = "postgresql"
 }
 
+model User {
+  id           Int           @id @default(autoincrement())
+  discord_id   String        @unique
+  username     String        @db.VarChar(32)
+  display_name String        @db.VarChar(32)
+  avatar       String        @db.VarChar(32)
+  avatar_url   String        @db.VarChar(256)
+  created_at   DateTime      @default(now())
+  updated_at   DateTime      @updatedAt
+  AuthSession  AuthSession[]
+}
+
 model Session {
-  id        String   @id @default(cuid())
-  data      Json     @db.Json
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         String   @id @default(uuid())
+  data       Json     @db.Json
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model AuthSession {
+  id         String   @id @default(uuid())
+  user_id    Int
+  user       User     @relation(fields: [user_id], references: [id])
+  expires_at DateTime
+  created_at DateTime @default(now())
 }
